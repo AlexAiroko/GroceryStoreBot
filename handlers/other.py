@@ -8,4 +8,4 @@ other_router = Router()
 
 @other_router.message()
 async def answer_other_message(message: Message):
-	message.answer(LEXICON_RU["other"])
+	await message.answer(LEXICON_RU["other"])
