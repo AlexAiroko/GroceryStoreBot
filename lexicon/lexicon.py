@@ -12,7 +12,7 @@ LEXICON_RU: dict[str, str] = {
 	"order_status": "🚚 Статус заказа",
 	"setting_catalogue": "⚙️ Настройка каталога",
 	"questions": "❓ Вопросы",
-	"setting_category": "⚙️ Настройка категорий"
+	"setting_category": "⚙️ Настройка категорий",
 }
 
 LEXICON_COMMANDS_RU: dict[str, str] = {
