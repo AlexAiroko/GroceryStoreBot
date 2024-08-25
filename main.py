@@ -9,7 +9,6 @@ from config.config import Config, load_config
 
 from handlers.user import user_router
 from handlers.admin import admin_router
-from handlers.other import other_router
 
 from keyboards.main_menu import set_main_menu
 
@@ -47,7 +46,6 @@ async def main() -> None:
 	# Register Routers
 	dp.include_router(admin_router)
 	dp.include_router(user_router)
-	dp.include_router(other_router)
 	
 	# Start polling
 	await bot.delete_webhook(drop_pending_updates=True)

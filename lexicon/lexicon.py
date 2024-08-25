@@ -15,6 +15,7 @@ LEXICON_RU: dict[str, str] = {
 	"setting_catalogue": "⚙️ Настройка каталога",
 	"questions": "❓ Вопросы",
 	"setting_category": "⚙️ Настройка категорий",
+	"change_mode": "🛠 Поменять режим"
 }
 
 LEXICON_COMMANDS_RU: dict[str, str] = {
