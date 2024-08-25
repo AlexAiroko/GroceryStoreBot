@@ -20,3 +20,8 @@ async def process_menu_command(message: Message):
 		text=LEXICON_RU["menu_user"],
 		reply_markup=user_menu_kb
 	)
+
+
+@user_router.message()
+async def answer_other_message(message: Message):
+	await message.answer(LEXICON_RU["other"])
