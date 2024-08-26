@@ -13,7 +13,7 @@ user_buttons = [
 ]
 
 admin_buttons = [
-	InlineKeyboardButton(text=LEXICON_RU[text], callback_data=text) for text in ("setting_catalogue", "setting_category", "questions")
+	InlineKeyboardButton(text=LEXICON_RU[text], callback_data=text) for text in ("setting_catalogue", "orders", "questions")
 ]
 
 change_mode_button = InlineKeyboardButton(text=LEXICON_RU["change_mode"], callback_data="change_mode")
