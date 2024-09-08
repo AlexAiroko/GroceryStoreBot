@@ -7,7 +7,7 @@ from aiogram.exceptions import TelegramBadRequest
 
 from filters.admin import IsAdmin
 
-from keyboards.store_menu import admin_admin_kb_builder, admin_user_kb_builder
+from keyboards.store_menu import get_admin_admin_kb, get_admin_user_kb
 
 from lexicon.lexicon import LEXICON_RU
 
@@ -23,7 +23,7 @@ admin_router.message.filter(IsAdmin())
 async def process_menu_command(message: Message):
 	await message.answer(
 		text=LEXICON_RU["menu_admin"],
-		reply_markup=admin_admin_kb_builder.as_markup()
+		reply_markup=get_admin_admin_kb()
 	)
 
 
@@ -46,11 +46,11 @@ async def process_questions_button_pressed(callback: CallbackQuery):
 @admin_router.callback_query(F.data == "change_mode")
 async def process_change_mode_button_pressed(callback: CallbackQuery):
 	# Compare Inline Keyboards from message and from kb builder through first button text
-	if callback.message.reply_markup.inline_keyboard[0][0].text == admin_admin_kb_builder.as_markup().inline_keyboard[0][0].text:
+	if callback.message.reply_markup.inline_keyboard[0][0].text == get_admin_admin_kb().inline_keyboard[0][0].text:
 		await callback.message.edit_reply_markup(
-			reply_markup=admin_user_kb_builder.as_markup()
+			reply_markup=get_admin_user_kb()
 		)
 	else:
 		await callback.message.edit_reply_markup(
-			reply_markup=admin_admin_kb_builder.as_markup()
+			reply_markup=get_admin_admin_kb()
 		)

@@ -4,6 +4,7 @@ import asyncio
 from aiogram import Bot, Dispatcher
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
+from aiogram.fsm.storage.redis import RedisStorage, Redis
 
 from config.config import Config, load_config
 
@@ -11,6 +12,8 @@ from handlers.user import user_router
 from handlers.admin import admin_router
 
 from keyboards.main_menu import set_main_menu
+
+from db.models import create_tables
 
 
 # Logger initialization
@@ -26,15 +29,22 @@ async def main() -> None:
 	
 	logger.info('Starting Bot')
 
+	# Create db sheets
+	await create_tables()
+
 	# Load config
 	config: Config = load_config(".env")
+
+	# Redis Storage
+	redis = Redis(host="localhost")
+	storage = RedisStorage(redis=redis)
 
 	# Bot and Dispatcher initialization
 	bot = Bot(
 		token=config.tg_bot.token,
 		default=DefaultBotProperties(parse_mode=ParseMode.HTML)
 	)
-	dp = Dispatcher()
+	dp = Dispatcher(storage=storage)
 
 	# Admins list
 	admin_ids = config.tg_bot.admin_ids
